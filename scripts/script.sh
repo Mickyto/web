@@ -3,15 +3,19 @@
 sudo su
 
 apt-get update
-#apt-get -y install default-jre firefox xvfb
 
-echo 'Installing nodeJS'
+echo 'Installing node.js and npm'
 
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo apt-get install -y nodejs npm
+apt-get install -y nodejs npm
 
+echo 'Installing dependencies'
 
-sudo ln /usr/bin/nodejs /usr/bin/node
+cd /vagrant
+npm install
+npm install -g nodemon
+
+ln /usr/bin/nodejs /usr/bin/node
 
 echo 'Done'
 
