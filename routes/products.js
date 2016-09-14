@@ -17,7 +17,6 @@ router.get('/:id', function (req, res) {
     client.get('http://api.skukit-st.com/v1/products/' + req.id, function (product, response) {
         client.get('http://api.skukit-st.com/v1/categories/' + product.category_id, function (category, response) {
 
-
             var imageArray = [];
             for (var i = 0; i < product.images.length; i++) {
                 var picName = product.images[i].src;
@@ -27,14 +26,6 @@ router.get('/:id', function (req, res) {
                     }
                 }
             }
-
-            console.log(imageArray);
-
-
-
-
-            //var picName = product.front_image.src;
-            //var src = 'http://im.skukit-st.com/' + picName[0] + '/' + picName[1] + '/' + picName[2] + '/' + picName;
 
             res.render('product', {
                 title: product.name,
