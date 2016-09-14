@@ -1,0 +1,11 @@
+extends layout
+block content
+  h1 #{category.name}
+  each product, i in products
+    a(href='/products/#{product.id}')
+      p #{product.name}
+      if product.src
+        img(src='#{product.src}', width=200)
+
+
+
