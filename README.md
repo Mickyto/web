@@ -4,9 +4,9 @@ SKUKIT.COM
 [Skukit.com](http://skukit.com) is a global database of industrial products
 
 
-## Installation
+# Installation
 
-# Using Vagrant
+## Using Vagrant
 
 ```sh
 git clone git@github.com:skukit/web.git
@@ -15,7 +15,7 @@ vagrant up
 ```
 You can see launched application on http://192.168.33.10
 
-# Using Docker
+## Using Docker
 
 ```sh
 git clone git@github.com:skukit/web.git
