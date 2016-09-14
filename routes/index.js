@@ -1,25 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var http = require('http');
+var Client = require('node-rest-client').Client;
 
-router.get('/', function(req, res, next) {
+var client = new Client();
 
-  http.get('http://api.skukit-dev.com/v1/categories/', function (response) {
-    var buffer = "";
+router.get('/', function(req, res) {
 
-    response.on("data", function (chunk) {
-      buffer += chunk;
+    client.get('http://api.skukit-st.com/v1/categories/', function (data, response) {
+        res.render('index', {
+            title: 'skukit HOME',
+            categories: data.items
+        });
     });
-    console.log(response);
-
-    response.on("end", function (err) {
-      var data = JSON.parse(buffer);
-      res.render('index', {
-        title: 'Express',
-        categories: data.items
-      });
-     });
-  });
 });
 
 module.exports = router;
