@@ -6,4 +6,12 @@ block content
     a(href='/categories/#{category._id}')
       p #{category.name}
 
+  hr
+
+  each vendor, i in vendors
+    a(href='/vendors/#{vendor._id}')
+      p #{vendor.name}
+      if vendor.src
+        img(src='#{vendor.src}', width=200)
+
 
