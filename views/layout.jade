@@ -6,4 +6,12 @@ html
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
     script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
   body
-    block content
+    div.wrapper
+      header
+        table
+          td
+            a.header(href='/') Home
+          td
+            a.header(href='/catalog') Catalog
+      div.contents
+        block content
