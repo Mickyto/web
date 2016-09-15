@@ -28,7 +28,7 @@ router.get('/:id', function (req, res) {
             }
 
             res.render('product', {
-                title: product.name,
+                title: product.vendor + ' ' + product.model,
                 product: product,
                 images: imageArray,
                 category: category.name
