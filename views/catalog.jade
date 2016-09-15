@@ -1,0 +1,10 @@
+extends layout
+block content
+  each category, i in categories
+    a(href='/categories/#{category._id}')
+      p #{category.name}
+      if category.src
+        img(src='#{category.src}', width=200)
+
+
+
