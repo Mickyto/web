@@ -7,7 +7,7 @@ var client = new Client();
 router.param('id', function (req, res, next, id) {
     client.get(req.env.url + 'vendors/' + id, function (data) {
         if (data.error) {
-            next(new Error(data.error.error_msg));
+            return next(data.error);
         }
         else {
             req.id = id;

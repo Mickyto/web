@@ -10,7 +10,7 @@ router.param('id', function (req, res, next, id) {
     client.get(req.env.url + 'products/' + id, function (data, response) {
 
         if (data.error) {
-            next(new Error(data.error.error_msg));
+            return next(data.error);
         }
         else {
             req.id = id;
