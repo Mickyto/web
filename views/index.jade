@@ -9,7 +9,7 @@ block content
   hr
 
   each vendor, i in vendors
-    a(href='/vendors/#{vendor._id}')
+    a(href='/vendors/#{vendor.id}')
       p #{vendor.name}
       if vendor.src
         img(src='#{vendor.src}', width=200)
