@@ -8,8 +8,14 @@ var client = new Client();
 router.param('id', function (req, res, next, id) {
 
     client.get(req.env.url + 'products/' + id, function (data, response) {
-        req.id = id;
-        next();
+
+        if (data.error) {
+            next(new Error(data.error.error_msg));
+        }
+        else {
+            req.id = id;
+            next();
+        }
     });
 });
 

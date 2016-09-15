@@ -5,9 +5,14 @@ var client = new Client();
 
 // route middleware to validate :id
 router.param('id', function (req, res, next, id) {
-    client.get(req.env.url + 'vendors/' + id, function () {
-        req.id = id;
-        next();
+    client.get(req.env.url + 'vendors/' + id, function (data) {
+        if (data.error) {
+            next(new Error(data.error.error_msg));
+        }
+        else {
+            req.id = id;
+            next();
+        }
     });
 });
 
