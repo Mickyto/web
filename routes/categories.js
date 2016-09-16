@@ -7,7 +7,7 @@ var client = new Client();
 // route middleware to validate :id
 router.param('id', function (req, res, next, id) {
 
-    client.get(req.env.url + 'categories/' + id, function (data, response) {
+    client.get(req.getFullUrl('categories/' + id), function (data, response) {
 
         if (data.error) {
             return next(data.error);
@@ -21,8 +21,8 @@ router.param('id', function (req, res, next, id) {
 
 router.get('/:id', function (req, res) {
 
-    client.get(req.env.url + 'categories/' + req.id, function (category) {
-        client.get(req.env.url + 'products/?category_id=' + category._id, function (products) {
+    client.get(req.getFullUrl('categories/' + req.id), function (category) {
+        client.get(req.getFullUrl('products/', { category_id: category._id }), function (products) {
 
             var productArray = [];
             for (var i = 0; i < products.items.length; i++) {

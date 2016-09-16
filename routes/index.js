@@ -5,12 +5,13 @@ var client = new Client();
 
 router.get('/', function(req, res) {
 
-    client.get(req.env.url + 'categories/', function (categories) {
-        client.get(req.env.url + 'vendors/', function (vendors) {
+    client.get(req.getFullUrl('categories/'), function (categories) {
+        client.get(req.getFullUrl('vendors/'), function (vendors) {
 
             var vendorArray = [];
             for (var i = 0; i < vendors.items.length; i++) {
                 var picName = vendors.items[i].logotype;
+
                 vendorArray[i] = {
                     name: vendors.items[i].name,
                     id: vendors.items[i]._id
@@ -28,6 +29,11 @@ router.get('/', function(req, res) {
             });
         });
     });
+});
+
+router.get('/locale', function (req, res) {
+    req.session.lang = req.query.lang;
+    res.redirect('back');
 });
 
 

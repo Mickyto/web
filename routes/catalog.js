@@ -5,7 +5,7 @@ var client = new Client();
 
 router.get('/', function(req, res) {
 
-    client.get(req.env.url + 'categories/', function (categories) {
+    client.get(req.getFullUrl('categories/'), function (categories) {
 
         var categoryArray = [];
         for (var i = 0; i < categories.items.length; i++) {

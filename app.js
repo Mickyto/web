@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var env = require('./env.example.js');
 
@@ -26,8 +27,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use(function (req, res, next) {
+
+  var lang  =  req.session.lang || 'default';
+  req.getFullUrl = function (endpoint, queryObject) {
+    var fullUrl = env.url + endpoint + '?locale=' + lang;
+    for (var query in queryObject) {
+      fullUrl += '&' + query + '=' + queryObject[query];
+    }
+    return fullUrl;
+  };
+
   req.env = env;
   next();
 });
