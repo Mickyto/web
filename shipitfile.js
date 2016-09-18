@@ -6,7 +6,7 @@ module.exports = function (shipit) {
             workspace: '/tmp/git-monitor',
             deployTo: '/usr/app/web',
             repositoryUrl: 'https://github.com/Mickyto/web.git',
-            ignores: ['PRD.md', '.gitignore/', 'README.md', 'nightwatch.json', 'nightwatch', 'Vagrantfile'],
+            ignores: ['PRD.md', '.gitignore/', 'README.md', 'nightwatch.json', 'nightwatch', 'Vagrantfile', 'bin/selenium-server-standalone.jar'],
             keepReleases: 2,
             key: '~/.ssh/id_rsa',
             branch: 'master'
