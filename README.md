@@ -26,3 +26,17 @@ docker run -d -p 3000:3000 --name webApp -v "$PWD":/usr/src/app web
 
 You can see launched application on http://localhost:3000
 
+## Deploy
+
+A command beyond uses docker image with shipit-cli and launch deployment 
+
+```
+docker run -t --rm -v "$PWD":/usr/src/app -v ~/.ssh:/root/.ssh mickyto/shipit shipit staging deploy build 
+```
+You can launch the deployment without build image
+
+```
+docker run -t --rm -v "$PWD":/usr/src/app -v ~/.ssh:/root/.ssh mickyto/shipit shipit staging deploy restart 
+```
+
+
