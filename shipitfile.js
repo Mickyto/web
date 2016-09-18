@@ -9,7 +9,7 @@ module.exports = function (shipit) {
             ignores: ['PRD.md', '.gitignore/', 'README.md', 'nightwatch.json', 'nightwatch', 'Vagrantfile'],
             keepReleases: 2,
             key: '~/.ssh/id_rsa',
-            branch: 'testing_deploy'
+            branch: 'master'
         },
         staging: {
             servers: 'root@95.213.204.155'
