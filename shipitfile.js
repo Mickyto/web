@@ -17,9 +17,11 @@ module.exports = function (shipit) {
     });
 
     shipit.task('build', function () {
-        return shipit.remote('if test out=$(docker images | grep web) ; then cd /usr/app/web/current && docker build -t web .' +
-            '&& docker run --rm -v /usr/app/web/current:/usr/src/app web npm install' +
-            '&& docker run -d -p 80:3000 -v /usr/app/web/current:/usr/src/app --name webApp web; fi');
+        return shipit.remote(
+            'cd /usr/app/web/current && ' +
+            'docker build -t web . &&' +
+            'docker run --rm -v /usr/app/web/current:/usr/src/app web npm install &&' +
+            'docker run -d -p 80:3000 -v /usr/app/web/current:/usr/src/app --name webApp web');
     });
 
     shipit.task('restart', function () {
