@@ -12,7 +12,7 @@ module.exports = function (shipit) {
             branch: 'master'
         },
         staging: {
-            servers: 'root@95.213.204.155'
+            servers: 'root@95.213.194.218'
         }
     });
 
