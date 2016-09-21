@@ -44,7 +44,7 @@ docker run -t --rm -v "$PWD":/usr/src/app -v ~/.ssh:/root/.ssh mickyto/shipit sh
 First you need to link [selenium container](https://hub.docker.com/r/selenium/standalone-firefox/) to application. The application should be ran in the container named `webApp`   
 
 ```
-docker run -d -P --name selenium --link webApp:app selenium/standalone-firefox
+docker run -d --name selenium --link webApp:app selenium/standalone-firefox
 ```
 
 Then run tests from [nightwatch container](https://hub.docker.com/r/mickyto/nightwatch/) getting access to the selenium container
