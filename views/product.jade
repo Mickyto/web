@@ -1,0 +1,9 @@
+extends layout
+block content
+
+    h1
+      a(href='/vendors/#{product.vendor_id}') #{product.vendor}
+      span &nbsp #{product.model}
+    p #{category}
+    each image, i in images
+        img(src='#{image.src}', width=200)

@@ -7,8 +7,8 @@
   "globals_path" : "",
 
   "selenium" : {
-    "start_process" : true,
-    "server_path" : "selenium-server-standalone.jar",
+    "start_process" : false,
+    "server_path" : "",
     "log_path" : "",
     "host" : "127.0.0.1",
     "port" : 4444,
@@ -20,10 +20,9 @@
 
   "test_settings" : {
     "default" : {
-      "launch_url" : "http://localhost",
+      "launch_url" : "",
       "selenium_port"  : 4444,
-      "selenium_host"  : "localhost",
-      "pathname": "/wd/hub",
+      "selenium_host"  : "selenium",
       "silent": true,
       "firefox_profile" : false,
       "screenshots" : {

@@ -1,0 +1,20 @@
+sudo: required
+
+language: node_js
+
+services:
+  - docker
+
+before_install:
+
+  - "docker build -t web ."
+  - "docker run -d --name webApp web"
+  - "docker run -d --name selenium --link webApp:app selenium/standalone-firefox"
+  - "sleep 5"
+
+script:
+  - "docker run --rm --link selenium -v $PWD:/usr/src/app -w /usr/src/app mickyto/nightwatch npm test"
+
+notifications:
+  slack: skukit:Vl41lXRhOz6RSpTbI06NSP7f
+  email: false
