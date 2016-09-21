@@ -28,7 +28,8 @@ You can see launched application on http://localhost:3000
 
 ## Deploy
 
-A command beyond uses docker image with [shipit-cli](https://github.com/shipitjs/shipit) and launch deployment 
+
+A command below uses docker image with [shipit-cli](https://github.com/shipitjs/shipit) and launch deployment
 
 ```
 docker run -t --rm -v "$PWD":/usr/src/app -v ~/.ssh:/root/.ssh mickyto/shipit shipit staging deploy build 
