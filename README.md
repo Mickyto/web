@@ -28,8 +28,9 @@ You can see launched application on http://localhost:3000
 
 ## Deploy
 
+For deployment we implemented [shipit](https://github.com/shipitjs/shipit). It requires `shipitfile.js`. You can create such of files as many as you need. Just name them like that `shipitfile.any.js` and change name in the command below in this part `"$PWD"/shipitfile.js:`
 
-A command below uses docker image with [shipit-cli](https://github.com/shipitjs/shipit) and launch deployment
+The command below uses [docker image with shipit-cli](https://hub.docker.com/r/mickyto/shipit/) and launch deployment
 
 ```
 docker run -t --rm -v "$PWD"/shipitfile.js:/usr/src/app/shipitfile.js -v ~/.ssh:/root/.ssh mickyto/shipit shipit staging deploy build
