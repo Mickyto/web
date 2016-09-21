@@ -9,7 +9,7 @@ SKUKIT.COM
 ## Using Vagrant
 
 ```sh
-git clone https://github.com/Mickyto/web.git
+git clone https://github.com/skukit/web.git
 cd web
 vagrant up
 ```
@@ -18,7 +18,7 @@ You can see launched application on http://192.168.33.10
 ## Using Docker
 
 ```sh
-git clone https://github.com/Mickyto/web.git
+git clone https://github.com/skukit/web.git
 cd web
 docker build -t web .
 docker run -d -p 3000:3000 --name webApp web
