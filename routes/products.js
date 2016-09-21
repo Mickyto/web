@@ -6,7 +6,6 @@ var client = new Client();
 
 // route middleware to validate :id
 router.param('id', function (req, res, next, id) {
-
     client.get(req.getFullUrl('products/' + id), function (data, response) {
 
         if (data.error) {
@@ -30,12 +29,14 @@ router.get('/:id', function (req, res) {
                 if (picName !== undefined) {
                     imageArray[i] = {
                         src: req.env.imUrl + picName[0] + '/' + picName[1] + '/' + picName[2] + '/' + picName
+
                     }
                 }
             }
 
             res.render('product', {
                 title: product.vendor + ' ' + product.model,
+
                 product: product,
                 images: imageArray,
                 category: category.name
@@ -46,6 +47,3 @@ router.get('/:id', function (req, res) {
 
 
 module.exports = router;
-
-
-

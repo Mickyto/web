@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Client = require('node-rest-client').Client;
+
 var client = new Client();
 
 // route middleware to validate :id
@@ -14,6 +15,7 @@ router.param('id', function (req, res, next, id) {
             req.id = id;
             next();
         }
+
     });
 });
 
@@ -21,6 +23,7 @@ router.param('id', function (req, res, next, id) {
 router.get('/:id', function (req, res) {
 
     client.get(req.getFullUrl('vendors/' + req.id), function (vendor) {
+
         res.render('vendor', {
             title: vendor.name,
             vendor: vendor
@@ -29,5 +32,3 @@ router.get('/:id', function (req, res) {
 });
 
 module.exports = router;
-
-
