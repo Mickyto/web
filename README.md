@@ -1,4 +1,4 @@
-SKUKIT.COM
+SKUKIT.COM [![Build Status](https://travis-ci.org/skukit/web.svg?branch=master)](https://travis-ci.org/skukit/web)
 ==========
 
 [Skukit.com](http://skukit.com) is a global database of industrial products
