@@ -28,27 +28,40 @@ You can see launched application on http://localhost:3000
 
 ## Deploy
 
+For deployment we use [shipit](https://github.com/shipitjs/shipit). 
 
-A command below uses docker image with [shipit-cli](https://github.com/shipitjs/shipit) and launch deployment
+### Hard deploy
 
-```
-docker run -t --rm -v "$PWD":/usr/src/app -v ~/.ssh:/root/.ssh mickyto/shipit shipit staging deploy build 
-```
-You can launch the deployment without build image
+If you deploy first time or you want to rebuild image on server after deploy:
 
 ```
-docker run -t --rm -v "$PWD":/usr/src/app -v ~/.ssh:/root/.ssh mickyto/shipit shipit staging deploy restart 
+docker run -t --rm -v "$PWD"/shipitfile.js:/usr/src/app/shipitfile.js -v ~/.ssh:/root/.ssh mickyto/shipit shipit staging deploy build
 ```
+
+
+### Soft deploy
+
+If you need only deploy and restart container:
+
+```
+docker run -t --rm -v "$PWD"/shipitfile.js:/usr/src/app/shipitfile.js -v ~/.ssh:/root/.ssh mickyto/shipit shipit staging deploy restart
+```
+
+#### Shipit file customization
+
+1. Create `shipitfile.dev.js`
+2. Run `docker run -t --rm -v "$PWD"/shipitfile.dev.js:/usr/src/app/shipitfile.js -v ~/.ssh:/root/.ssh mickyto/shipit shipit staging deploy restart`
+
 
 ## Test
 
-First you need to link [selenium container](https://hub.docker.com/r/selenium/standalone-firefox/) to application. The application should be ran in the container named `webApp`   
+Link your app(`webApp` in our case) to [selenium](https://hub.docker.com/r/selenium/standalone-firefox/).
 
 ```
 docker run -d --name selenium --link webApp:app selenium/standalone-firefox
 ```
 
-Then run tests from [nightwatch container](https://hub.docker.com/r/mickyto/nightwatch/) getting access to the selenium container
+Link `selenium` container and run tests with [nightwatch container](https://hub.docker.com/r/mickyto/nightwatch/).
 
 ```
 docker run --rm --link selenium -v "$PWD":/usr/src/app -w /usr/src/app mickyto/nightwatch npm test
