@@ -14,20 +14,29 @@ module.exports = function (shipit) {
             branch: 'master'
         },
         staging: {
-            servers: 'root@95.213.194.218'
+            servers: 'root@185.143.172.192'
         }
     });
 
-    shipit.task('build', function () {
+    shipit.blTask('removeContainer', function () {
+        return shipit.remote("if docker ps -a | grep webApp ; then docker rm -f webApp; fi")
+    });
+
+    shipit.blTask('buildImage', ['removeContainer'], function () {
+        return shipit.remote('cd ' + wd + '/current && docker build -t web .')
+    });
+
+    shipit.blTask('startContainer', ['buildImage'], function () {
         return shipit.remote(
-            'cd ' + wd + '/current && ' +
-            'docker build -t web . &&' +
             'docker run --rm -v ' + wd + '/current:/usr/src/app web npm install &&' +
-            'if out=$(docker ps -a | grep webApp) ; then docker rm -f webApp; fi &&' +
-            'docker run -d -p 80:3000 -v ' + wd + '/current:/usr/src/app --name webApp web');
+            'docker run -d -p 8007:3000 -v ' + wd + '/current:/usr/src/app --name webApp web');
+    });
+
+    shipit.blTask('build', function () {
+        return shipit.start('removeContainer', 'buildImage', 'startContainer');
     });
 
     shipit.task('restart', function () {
-        return shipit.remote('if out=$(docker ps | grep webApp) ; then docker restart webApp; fi');
+        return shipit.remote('docker restart webApp');
     });
 };
