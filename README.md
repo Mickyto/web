@@ -29,7 +29,7 @@ You can see launched application on http://localhost:3000
 
 ## Deploy
 
-For deployment we use [shipit](https://github.com/shipitjs/shipit). 
+For deployment we use [shipit](https://github.com/shipitjs/shipit)
 
 ### Hard deploy
 

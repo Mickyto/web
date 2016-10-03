@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Client = require('node-rest-client').Client;
-
 var client = new Client();
 
 // route middleware to validate :id
@@ -36,7 +35,6 @@ router.get('/:id', function (req, res) {
 
             res.render('product', {
                 title: product.vendor + ' ' + product.model,
-
                 product: product,
                 images: imageArray,
                 category: category.name

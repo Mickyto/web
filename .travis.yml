@@ -13,7 +13,7 @@ before_install:
   - "sleep 5"
 
 script:
-  - "docker run --rm --link selenium -v $PWD:/usr/src/app -w /usr/src/app mickyto/nightwatch npm test"
+  - "docker run --rm --link selenium -v $PWD:/usr/src/app mickyto/nightwatch npm test"
 
 notifications:
   slack: skukit:Vl41lXRhOz6RSpTbI06NSP7f

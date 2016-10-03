@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Client = require('node-rest-client').Client;
-
 var client = new Client();
 
 // route middleware to validate :id

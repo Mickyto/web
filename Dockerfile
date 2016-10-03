@@ -1,6 +1,6 @@
   FROM node:latest
 
-  MAINTAINER Igor Egay https://github.com/Mickyto
+  MAINTAINER Igor Egay https://github.com/mickyto
   RUN mkdir -p /usr/src/app
   WORKDIR /usr/src/app
 
