@@ -21,7 +21,8 @@ You can see launched application on http://192.168.33.10
 git clone https://github.com/skukit/web.git
 cd web
 docker build -t web .
-docker run -d -p 3000:3000 --name webApp web
+docker run --rm -v "$PWD":/usr/src/app web npm install
+docker run -d -p 3000:3000 -v "$PWD":/usr/src/app --name webApp web npm start
 ```
 
 You can see launched application on http://localhost:3000
